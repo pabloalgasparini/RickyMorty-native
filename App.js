@@ -4,6 +4,20 @@ import { NavigationContainer } from '@react-navigation/native';
 import Mostrar from './src/views/Mostrar';
 import Grid from './src/views/Grid';
 
+//REDUX
+
+//Necesitamos el provider para envolver toda la app 
+//y cuando lo envuelva hay que pasarle la store por medio de las props
+//asi ya estaria enlazada la app
+
+import { Provider } from 'react-redux'
+import store from './components/redux/store/store'
+
+import HomeView from './components/Home';
+import RegistroView from './components/Registro';
+import LoginView from './components/Login';
+
+
 
 export default function App() {
   // instanciamos nuestro Stack que nos ayudara para crear la navegacion y las pantallas
@@ -11,6 +25,7 @@ export default function App() {
 
   return (
     <>
+    <Provider store={store}>
       <NavigationContainer>
         {/* Nuestro controlador/context de navegacion */}
         <Stack.Navigator initialRouteName='Home'>
@@ -21,6 +36,7 @@ export default function App() {
         </Stack.Navigator>
       </NavigationContainer>
       <StatusBar style="auto" />
+    </Provider>
     </>
   );
 }
